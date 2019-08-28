@@ -1,0 +1,9 @@
+{
+  "short_name": "Reksi",
+  "name": "Reksi - Ask help from course assistant during the exercise session",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
