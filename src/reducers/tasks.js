@@ -1,11 +1,17 @@
+import { Status } from '../actions';
+
 const initialState = [
   {
-    id: '59cfcd48-5e73-4476-b2ed-b4160a0cbdef',
-    description: 'I need help to Exercise 1.',
+    id: '1',
+    description: 'Buy bananas',
+    completed: false,
+    status: 'AWAITING_SYNC',
   },
   {
-    id: '86723077-8c0f-4ef3-9d8e-6296a703c199',
-    description: "I don't know how to solve Exercise 2.",
+    id: '2',
+    description: 'Do code review',
+    completed: true,
+    status: 'AWAITING_SYNC',
   },
 ];
 
@@ -16,9 +22,20 @@ const tasks = (state = initialState, action) => {
         ...state,
         {
           id: action.id,
+          status: Status.AWAITING_SYNC,
+          completed: false,
           description: action.description,
         },
       ];
+    case 'TOGGLE_COMPLETED':
+      return state.map(task =>
+        task.id === action.id
+          ? {
+              ...task,
+              completed: action.completed,
+            }
+          : task
+      );
     default:
       return state;
   }
