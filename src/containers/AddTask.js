@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addTask } from '../actions';
 
-const AddTask = ({ dispatch }) => {
+const AddTask = props => {
   let input;
 
   return (
@@ -13,7 +13,7 @@ const AddTask = ({ dispatch }) => {
           if (!input.value.trim()) {
             return;
           }
-          dispatch(addTask(input.value));
+          props.addTask(input.value);
           input.value = '';
         }}
       >
@@ -24,4 +24,11 @@ const AddTask = ({ dispatch }) => {
   );
 };
 
-export default connect()(AddTask);
+const mapDispatchToProps = {
+  addTask,
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddTask);

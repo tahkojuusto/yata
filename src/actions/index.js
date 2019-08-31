@@ -1,8 +1,8 @@
-let nextTaskId = 0;
+import uuidv4 from 'uuid/v4';
 
 export const addTask = description => ({
   type: 'ADD_TASK',
-  id: nextTaskId++,
+  id: uuidv4(),
   description,
 });
 
