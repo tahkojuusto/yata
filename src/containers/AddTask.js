@@ -44,8 +44,7 @@ const AddTask = props => {
       >
         <Input
           className={classes.textField}
-          margin="normal"
-          label="Add todo item here"
+          placeholder="Add todo item here"
           inputRef={node => (input = node)}
         />
         <Button variant="outlined" className={classes.button} type="submit">

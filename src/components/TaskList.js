@@ -42,13 +42,12 @@ const TaskList = ({ tasks, toggleCompleted: _toggleCompleted }) => {
           <TableRow>
             <TableCell>Task</TableCell>
             <TableCell>Completed</TableCell>
-            <TableCell>Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {tasks.map(task => (
-            <TableRow>
-              <TableCell>{task.description}</TableCell>
+            <TableRow key={task.id}>
+              <TableCell key={task.id}>{task.content}</TableCell>
               <TableCell>
                 <Checkbox
                   color="primary"
@@ -57,7 +56,6 @@ const TaskList = ({ tasks, toggleCompleted: _toggleCompleted }) => {
                   value={task.completed}
                 />
               </TableCell>
-              <TableCell>{task.status}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -70,7 +68,7 @@ TaskList.propTypes = {
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
       completed: PropTypes.bool.isRequired,
       status: PropTypes.oneOf(['AWAITING_SYNC', 'SYNC_OK']).isRequired,
     }).isRequired

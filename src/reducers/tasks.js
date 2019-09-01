@@ -3,13 +3,13 @@ import { Status } from '../actions';
 const initialState = [
   {
     id: '1',
-    description: 'Buy bananas',
+    content: 'Buy bananas',
     completed: false,
     status: 'AWAITING_SYNC',
   },
   {
     id: '2',
-    description: 'Do code review',
+    content: 'Do code review',
     completed: true,
     status: 'AWAITING_SYNC',
   },
@@ -24,7 +24,7 @@ const tasks = (state = initialState, action) => {
           id: action.id,
           status: Status.AWAITING_SYNC,
           completed: false,
-          description: action.description,
+          content: action.content,
         },
       ];
     case 'TOGGLE_COMPLETED':
@@ -36,6 +36,17 @@ const tasks = (state = initialState, action) => {
             }
           : task
       );
+    case 'SYNC_REMOTE': {
+      // TODO: Invoke remote Amplify and sync tasks here.
+      return state.map(task =>
+        task.status === Status.AWAITING_SYNC
+          ? {
+              ...task,
+              status: Status.SYNC_OK,
+            }
+          : task
+      );
+    }
     default:
       return state;
   }
