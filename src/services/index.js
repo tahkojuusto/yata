@@ -6,9 +6,6 @@ import {
   deleteTask as deleteTaskGQL,
 } from '../graphql/mutations';
 
-import config from '../aws-exports';
-API.configure(config);
-
 export async function fetchTasks() {
   return API.graphql(graphqlOperation(listTasksGQL)).then(
     res => res.data.listTasks.items
