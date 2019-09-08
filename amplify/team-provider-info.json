@@ -10,5 +10,17 @@
       "StackName": "yata-dev-20190907104426",
       "StackId": "arn:aws:cloudformation:eu-west-1:339294227822:stack/yata-dev-20190907104426/519da250-d143-11e9-8968-02731a038876"
     }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "yata-prod-20190908181453-authRole",
+      "UnauthRoleArn": "arn:aws:iam::339294227822:role/yata-prod-20190908181453-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::339294227822:role/yata-prod-20190908181453-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "yata-prod-20190908181453-deployment",
+      "UnauthRoleName": "yata-prod-20190908181453-unauthRole",
+      "StackName": "yata-prod-20190908181453",
+      "StackId": "arn:aws:cloudformation:eu-west-1:339294227822:stack/yata-prod-20190908181453/6942b3b0-d24b-11e9-aa99-0a62311bc72a"
+    }
   }
 }
