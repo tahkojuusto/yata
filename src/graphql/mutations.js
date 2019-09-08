@@ -6,6 +6,7 @@ export const createTask = `mutation CreateTask($input: CreateTaskInput!) {
     id
     content
     completed
+    owner
   }
 }
 `;
@@ -14,6 +15,7 @@ export const updateTask = `mutation UpdateTask($input: UpdateTaskInput!) {
     id
     content
     completed
+    owner
   }
 }
 `;
@@ -22,6 +24,7 @@ export const deleteTask = `mutation DeleteTask($input: DeleteTaskInput!) {
     id
     content
     completed
+    owner
   }
 }
 `;

@@ -1,4 +1,3 @@
-import uuidv4 from 'uuid/v4';
 import {
   createTask as createTaskGQL,
   updateTask as updateTaskGQL,
@@ -32,9 +31,10 @@ export const addTaskStart = () => {
   };
 };
 
-export const addTaskSuccess = ({ id, content, completed }) => {
+export const addTaskSuccess = ({ id, owner, content, completed }) => {
   return {
     type: 'ADD_TASK_SUCCESS',
+    owner,
     id,
     content,
     completed,
@@ -102,7 +102,6 @@ export function addTask(content) {
     dispatch(addTaskStart);
 
     const task = {
-      id: uuidv4(),
       content,
       completed: false,
     };

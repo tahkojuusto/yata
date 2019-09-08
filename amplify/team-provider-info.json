@@ -9,6 +9,11 @@
       "UnauthRoleName": "yata-dev-20190907104426-unauthRole",
       "StackName": "yata-dev-20190907104426",
       "StackId": "arn:aws:cloudformation:eu-west-1:339294227822:stack/yata-dev-20190907104426/519da250-d143-11e9-8968-02731a038876"
+    },
+    "categories": {
+      "auth": {
+        "yatad53395bf": {}
+      }
     }
   },
   "prod": {

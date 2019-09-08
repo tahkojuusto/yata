@@ -21,6 +21,7 @@ const taskState = (state = initialState, action) => {
     case 'ADD_TASK_SUCCESS':
       const task = {
         id: action.id,
+        owner: action.owner,
         content: action.content,
         completed: action.completed,
       };
