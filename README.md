@@ -5,3 +5,5 @@ This is a test todo app in order to test the following technologies:
 - React + Redux
 - Amplify + AppSync
 - GraphQL
+
+![Architecture](yata.png?raw=true 'Architecture')
