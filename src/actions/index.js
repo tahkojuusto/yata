@@ -1,32 +1,139 @@
 import uuidv4 from 'uuid/v4';
+import {
+  createTask as createTaskGQL,
+  updateTask as updateTaskGQL,
+  deleteTask as deleteTaskGQL,
+  fetchTasks as getTasksGQL,
+} from '../services';
 
-export const addTask = content => ({
-  type: 'ADD_TASK',
-  id: uuidv4(),
-  status: 'AWAITING_SYNC',
-  completed: false,
-  content,
-});
+export const getTasksStart = () => {
+  return {
+    type: 'GET_TASKS_START',
+  };
+};
 
-export const toggleCompleted = (id, completed) => ({
-  type: 'TOGGLE_COMPLETED',
+export const getTasksSuccess = tasks => {
+  return {
+    type: 'GET_TASKS_SUCCESS',
+    tasks,
+  };
+};
+
+export const getTasksError = content => {
+  return {
+    type: 'GET_TASKS_ERROR',
+    content,
+  };
+};
+
+export const addTaskStart = () => {
+  return {
+    type: 'ADD_TASK_START',
+  };
+};
+
+export const addTaskSuccess = ({ id, content, completed }) => {
+  return {
+    type: 'ADD_TASK_SUCCESS',
+    id,
+    content,
+    completed,
+  };
+};
+
+export const addTaskError = content => {
+  return {
+    type: 'ADD_TASK_ERROR',
+    content,
+  };
+};
+
+export const deleteTaskSuccess = ({ id }) => {
+  return {
+    type: 'DELETE_TASK_SUCCESS',
+    id,
+  };
+};
+
+export const deleteTaskError = content => {
+  return {
+    type: 'DELETE_TASK_ERROR',
+    content,
+  };
+};
+
+export const toggleCompletedStart = (id, completed) => {
+  return {
+    type: 'TOGGLE_COMPLETED_START',
+    id,
+    completed,
+  };
+};
+
+export const toggleCompletedSuccess = ({ id, completed }) => ({
+  type: 'TOGGLE_COMPLETED_SUCCESS',
   id,
   completed,
 });
 
-export const setVisibilityFilter = filter => ({
-  type: 'SET_VISIBILITY_FILTER',
-  filter,
-});
-
-export const VisibilityFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_UNCOMPLETED: 'SHOW_UNCOMPLETED',
+export const toggleCompletedError = content => {
+  return {
+    type: 'TOGGLE_COMPLETED_ERROR',
+    content,
+  };
 };
 
-export const Status = {
-  AWAITING_SYNC: 'AWAITING_SYNC',
-  SYNC_OK: 'SYNC_OK',
-  SYNC_ERROR: 'SYNC_ERROR',
-};
+export function getTasks() {
+  return function(dispatch) {
+    dispatch(getTasksStart());
+
+    // Artificial delay in order to see the spinner :)
+    setTimeout(function() {
+      return getTasksGQL().then(
+        res => dispatch(getTasksSuccess(res)),
+        err => dispatch(getTasksError(err))
+      );
+    }, 2000);
+  };
+}
+
+export function addTask(content) {
+  return function(dispatch) {
+    dispatch(addTaskStart);
+
+    const task = {
+      id: uuidv4(),
+      content,
+      completed: false,
+    };
+    return createTaskGQL(task).then(
+      res => dispatch(addTaskSuccess(res)),
+      err => dispatch(addTaskError(err))
+    );
+  };
+}
+
+export function toggleCompleted(id, completed) {
+  return function(dispatch) {
+    dispatch(toggleCompletedStart(id, completed));
+
+    return updateTaskGQL({
+      id,
+      completed,
+    }).then(
+      res => dispatch(toggleCompletedSuccess(res)),
+      err => dispatch(toggleCompletedError(err))
+    );
+  };
+}
+
+export function removeTask(id) {
+  return function(dispatch) {
+    return deleteTaskGQL({
+      id,
+    }).then(
+      res => dispatch(deleteTaskSuccess(res)),
+      err => dispatch(deleteTaskError(err))
+    );
+  };
+}

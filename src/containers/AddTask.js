@@ -55,9 +55,9 @@ const AddTask = props => {
   );
 };
 
-const mapDispatchToProps = {
-  addTask,
-};
+const mapDispatchToProps = dispatch => ({
+  addTask: task => dispatch(addTask(task)),
+});
 
 export default connect(
   null,

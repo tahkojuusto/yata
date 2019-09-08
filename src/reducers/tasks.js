@@ -1,55 +1,59 @@
-import { Status } from '../actions';
+const initialState = {
+  tasks: [],
+  pending: false,
+};
 
-const initialState = [
-  {
-    id: '1',
-    content: 'Buy bananas',
-    completed: false,
-    status: 'AWAITING_SYNC',
-  },
-  {
-    id: '2',
-    content: 'Do code review',
-    completed: true,
-    status: 'AWAITING_SYNC',
-  },
-];
-
-const tasks = (state = initialState, action) => {
+const taskState = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_TASK':
-      return [
+    case 'GET_TASKS_START': {
+      return {
         ...state,
-        {
-          id: action.id,
-          status: Status.AWAITING_SYNC,
-          completed: false,
-          content: action.content,
-        },
-      ];
-    case 'TOGGLE_COMPLETED':
-      return state.map(task =>
-        task.id === action.id
-          ? {
-              ...task,
-              completed: action.completed,
-            }
-          : task
-      );
-    case 'SYNC_REMOTE': {
-      // TODO: Invoke remote Amplify and sync tasks here.
-      return state.map(task =>
-        task.status === Status.AWAITING_SYNC
-          ? {
-              ...task,
-              status: Status.SYNC_OK,
-            }
-          : task
-      );
+        pending: true,
+      };
     }
+    case 'GET_TASKS_SUCCESS': {
+      return {
+        ...state,
+        tasks: action.tasks,
+        pending: false,
+      };
+    }
+    case 'ADD_TASK_SUCCESS':
+      const task = {
+        id: action.id,
+        content: action.content,
+        completed: action.completed,
+      };
+      return {
+        ...state,
+        tasks: [...state.tasks, task],
+      };
+    case 'DELETE_TASK_SUCCESS': {
+      const index = state.tasks.findIndex(task => task.id === action.id);
+      return {
+        ...state,
+        tasks: [
+          ...state.tasks.slice(0, index),
+          ...state.tasks.slice(index + 1),
+        ],
+      };
+    }
+
+    case 'TOGGLE_COMPLETED_SUCCESS':
+      return {
+        ...state,
+        tasks: state.tasks.map(task =>
+          task.id === action.id
+            ? {
+                ...task,
+                completed: action.completed,
+              }
+            : task
+        ),
+      };
     default:
       return state;
   }
 };
 
-export default tasks;
+export default taskState;

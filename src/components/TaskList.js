@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleCompleted } from '../actions';
+import { toggleCompleted, removeTask } from '../actions';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -10,6 +11,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,9 +22,17 @@ const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 200,
   },
+  progress: {
+    margin: theme.spacing(2),
+  },
 }));
 
-const TaskList = ({ tasks, toggleCompleted: _toggleCompleted }) => {
+const TaskList = ({
+  tasks,
+  pending,
+  toggleCompleted: _toggleCompleted,
+  removeTask: _removeTask,
+}) => {
   const classes = useStyles();
 
   const toggleCompleted = (e, id, completed) => {
@@ -35,13 +45,19 @@ const TaskList = ({ tasks, toggleCompleted: _toggleCompleted }) => {
     _toggleCompleted(id, completed);
   };
 
-  return (
+  const removeTask = (e, id) => {
+    e.preventDefault();
+    _removeTask(id);
+  };
+
+  const table = (
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
             <TableCell>Task</TableCell>
             <TableCell>Completed</TableCell>
+            <TableCell></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -56,12 +72,29 @@ const TaskList = ({ tasks, toggleCompleted: _toggleCompleted }) => {
                   value={task.completed}
                 />
               </TableCell>
+              <TableCell>
+                <a href="#" onClick={e => removeTask(e, task.id)}>
+                  Remove
+                </a>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </Paper>
   );
+
+  const spinner = (
+    <div>
+      <CircularProgress className={classes.progress} />
+    </div>
+  );
+
+  if (pending) {
+    return spinner;
+  } else {
+    return table;
+  }
 };
 
 TaskList.propTypes = {
@@ -70,16 +103,23 @@ TaskList.propTypes = {
       id: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
       completed: PropTypes.bool.isRequired,
-      status: PropTypes.oneOf(['AWAITING_SYNC', 'SYNC_OK']).isRequired,
     }).isRequired
   ).isRequired,
 };
 
+const mapStateToProps = state => {
+  return {
+    tasks: state.taskState.tasks,
+    pending: state.taskState.pending,
+  };
+};
+
 const mapDispatchToProps = {
   toggleCompleted,
+  removeTask,
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(TaskList);

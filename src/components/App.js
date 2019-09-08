@@ -1,11 +1,11 @@
 import React from 'react';
 import AddTask from '../containers/AddTask';
-import VisibleTaskList from '../containers/VisibleTaskList';
+import TaskList from '../components/TaskList';
 
 const App = () => (
   <div>
     <AddTask />
-    <VisibleTaskList />
+    <TaskList />
   </div>
 );
 
