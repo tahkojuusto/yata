@@ -1,5 +1,8 @@
 {
   "AppSyncApiName": "yata",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": "false"
+  "DynamoDBEnableServerSideEncryption": "false",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": ["authyatad53395bf", "Outputs.UserPoolId"]
+  }
 }

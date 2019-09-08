@@ -6,6 +6,7 @@ export const getTask = `query GetTask($id: ID!) {
     id
     content
     completed
+    owner
   }
 }
 `;
@@ -19,6 +20,7 @@ export const listTasks = `query ListTasks(
       id
       content
       completed
+      owner
     }
     nextToken
   }

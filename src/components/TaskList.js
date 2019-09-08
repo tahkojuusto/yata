@@ -56,6 +56,7 @@ const TaskList = ({
         <TableHead>
           <TableRow>
             <TableCell>Task</TableCell>
+            <TableCell>Author</TableCell>
             <TableCell>Completed</TableCell>
             <TableCell></TableCell>
           </TableRow>
@@ -64,6 +65,7 @@ const TaskList = ({
           {tasks.map(task => (
             <TableRow key={task.id}>
               <TableCell key={task.id}>{task.content}</TableCell>
+              <TableCell>{task.owner}</TableCell>
               <TableCell>
                 <Checkbox
                   color="primary"
@@ -101,6 +103,7 @@ TaskList.propTypes = {
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
+      owner: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
       completed: PropTypes.bool.isRequired,
     }).isRequired
