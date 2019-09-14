@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const TaskList = ({
+export const TaskList = ({
   tasks,
   pending,
   toggleCompleted: _toggleCompleted,
@@ -37,6 +37,7 @@ const TaskList = ({
 
   const toggleCompleted = (e, id, completed) => {
     e.preventDefault();
+
     const task = tasks.find(task => task.id === id);
     if (!task || task.completed === completed) {
       return;

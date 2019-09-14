@@ -6,13 +6,13 @@ import {
   deleteTask as deleteTaskGQL,
 } from '../graphql/mutations';
 
-export async function fetchTasks() {
+export function fetchTasks() {
   return API.graphql(graphqlOperation(listTasksGQL)).then(
     res => res.data.listTasks.items
   );
 }
 
-export async function createTask(task) {
+export function createTask(task) {
   return API.graphql(
     graphqlOperation(createTaskGQL, {
       input: task,
@@ -20,7 +20,7 @@ export async function createTask(task) {
   ).then(res => res.data.createTask);
 }
 
-export async function updateTask(task) {
+export function updateTask(task) {
   return API.graphql(
     graphqlOperation(updateTaskGQL, {
       input: task,
@@ -28,7 +28,7 @@ export async function updateTask(task) {
   ).then(res => res.data.updateTask);
 }
 
-export async function deleteTask(task) {
+export function deleteTask(task) {
   return API.graphql(
     graphqlOperation(deleteTaskGQL, {
       input: task,

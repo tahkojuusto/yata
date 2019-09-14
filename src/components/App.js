@@ -1,5 +1,5 @@
 import React from 'react';
-import AddTask from '../containers/AddTask';
+import AddTask from '../components/AddTask';
 import TaskList from '../components/TaskList';
 
 import Amplify from 'aws-amplify';

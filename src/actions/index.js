@@ -87,13 +87,10 @@ export function getTasks() {
   return function(dispatch) {
     dispatch(getTasksStart());
 
-    // Artificial delay in order to see the spinner :)
-    setTimeout(function() {
-      return getTasksGQL().then(
-        res => dispatch(getTasksSuccess(res)),
-        err => dispatch(getTasksError(err))
-      );
-    }, 2000);
+    return getTasksGQL().then(
+      res => dispatch(getTasksSuccess(res)),
+      err => dispatch(getTasksError(err))
+    );
   };
 }
 
