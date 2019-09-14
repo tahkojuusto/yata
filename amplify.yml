@@ -9,11 +9,11 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm i
+        - yarn install
     build:
       commands:
-        - CI=true npm run build
-        - CI=true npm test
+        - CI=true yarn run build
+        - CI=true yarn test
   artifacts:
     baseDirectory: build
     files:
