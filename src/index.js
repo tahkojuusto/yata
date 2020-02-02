@@ -15,12 +15,12 @@ const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(thunkMiddleware),
-    applyMiddleware(loggerMiddleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    applyMiddleware(loggerMiddleware)
+    //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 
-store.dispatch(getTasks());
+//store.dispatch(getTasks());
 
 render(
   <Provider store={store}>

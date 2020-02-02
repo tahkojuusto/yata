@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { toggleCompleted, removeTask } from '../actions';
+import { toggleCompleted, removeTask, getTasks } from '../actions';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -34,6 +34,10 @@ export const TaskList = ({
   removeTask: _removeTask,
 }) => {
   const classes = useStyles();
+
+  useEffect(() => {
+    getTasks();
+  });
 
   const toggleCompleted = (e, id, completed) => {
     e.preventDefault();
