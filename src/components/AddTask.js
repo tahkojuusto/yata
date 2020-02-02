@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AddTask = props => {
+export const AddTask = props => {
   const classes = useStyles();
   let input;
 
