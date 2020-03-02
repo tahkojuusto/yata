@@ -1,15 +1,15 @@
 {
   "prod": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-yata-prod-182900-authRole",
-      "UnauthRoleArn": "arn:aws:iam::682115169645:role/amplify-yata-prod-182900-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::682115169645:role/amplify-yata-prod-182900-authRole",
+      "AuthRoleName": "amplify-yata-prod-181420-authRole",
+      "UnauthRoleArn": "arn:aws:iam::682115169645:role/amplify-yata-prod-181420-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::682115169645:role/amplify-yata-prod-181420-authRole",
       "Region": "eu-west-1",
-      "DeploymentBucketName": "amplify-yata-prod-182900-deployment",
-      "UnauthRoleName": "amplify-yata-prod-182900-unauthRole",
-      "StackName": "amplify-yata-prod-182900",
-      "StackId": "arn:aws:cloudformation:eu-west-1:682115169645:stack/amplify-yata-prod-182900/ed7e82d0-5ca2-11ea-bd8f-0272ba7477a4",
-      "AmplifyAppId": "d1t24zv384zvqo"
+      "DeploymentBucketName": "amplify-yata-prod-181420-deployment",
+      "UnauthRoleName": "amplify-yata-prod-181420-unauthRole",
+      "StackName": "amplify-yata-prod-181420",
+      "StackId": "arn:aws:cloudformation:eu-west-1:682115169645:stack/amplify-yata-prod-181420/e1602a00-5ca0-11ea-88c6-0ac92d082ee0",
+      "AmplifyAppId": "d1vwzflqemj6rn"
     },
     "categories": {
       "auth": {
