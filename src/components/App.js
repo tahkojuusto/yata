@@ -9,10 +9,10 @@ import { withAuthenticator } from 'aws-amplify-react';
 Amplify.configure(awsconfig);
 
 const App = () => (
-  <div>
+  <>
     <AddTask />
     <TaskList />
-  </div>
+  </>
 );
 
 export default withAuthenticator(App, true);
