@@ -16,5 +16,23 @@
         "yatad53395bf": {}
       }
     }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-yata-dev-184951-authRole",
+      "UnauthRoleArn": "arn:aws:iam::682115169645:role/amplify-yata-dev-184951-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::682115169645:role/amplify-yata-dev-184951-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-yata-dev-184951-deployment",
+      "UnauthRoleName": "amplify-yata-dev-184951-unauthRole",
+      "StackName": "amplify-yata-dev-184951",
+      "StackId": "arn:aws:cloudformation:eu-west-1:682115169645:stack/amplify-yata-dev-184951/d6b0ed60-5ca5-11ea-94c2-06527026dd82",
+      "AmplifyAppId": "d1t24zv384zvqo"
+    },
+    "categories": {
+      "auth": {
+        "yatad53395bf": {}
+      }
+    }
   }
 }
