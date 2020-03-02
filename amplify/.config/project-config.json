@@ -1,15 +1,15 @@
 {
+  "providers": ["awscloudformation"],
   "projectName": "yata",
-  "version": "2.0",
+  "version": "3.0",
   "frontend": "javascript",
   "javascript": {
     "framework": "react",
     "config": {
       "SourceDir": "src",
       "DistributionDir": "build",
-      "BuildCommand": "yarn build",
+      "BuildCommand": "yarn run build",
       "StartCommand": "yarn start"
     }
-  },
-  "providers": ["awscloudformation"]
+  }
 }
