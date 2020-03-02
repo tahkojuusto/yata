@@ -46,3 +46,13 @@ The CI/CD pipeline has been defined in file `amplify.yml`. It runs the following
 - run unit tests and e2e tests
 - deploy static files (front-end)
 - deploy backend (GraphQL + Cognito)
+
+## Screenshots
+
+![ss1](screenshots/frontend_pipelines.png?raw=true 'Frontend pipelines')
+![ss2](screenshots/responsive_validation.png?raw=true 'UI validation')
+![ss3](screenshots/backends.png?raw=true 'Backends')
+![ss4](screenshots/appsync_schema.png?raw=true 'GraphQL')
+![ss5](screenshots/cognito.png?raw=true 'Cognito')
+![ss6](screenshots/dynamodb.png?raw=true 'DynamoDB')
+![ss7](screenshots/e2e_tests.png?raw=true 'Cypress tests')
