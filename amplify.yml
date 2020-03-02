@@ -33,7 +33,7 @@ test:
       commands:
         - yarn install
         - yarn add wait-on
-        - yarn add mocha mochawesome-merge mochawesome-report-generator
+        - yarn add mocha mochawesome mochawesome-merge mochawesome-report-generator
         - 'yarn start & npx wait-on http://127.0.0.1:3000'
     test:
       commands:
